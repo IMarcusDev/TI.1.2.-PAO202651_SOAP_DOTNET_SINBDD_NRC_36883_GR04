@@ -8,6 +8,8 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddSoapCore();
 
 builder.Services.AddSingleton<ILoginWebService, LoginWebService>();
+builder.Services.AddSingleton<ICatalogWebService, CatalogWebService>();
+builder.Services.AddSingleton<IConverterWebService, ConverterWebService>();
 
 var app = builder.Build();
 
@@ -17,6 +19,18 @@ app.UseEndpoints(endpoints =>
 {
   _ = endpoints.UseSoapEndpoint<ILoginWebService>(
     "/LoginWebService.svc",
+    new SoapEncoderOptions(),
+    SoapSerializer.XmlSerializer
+  );
+
+  _ = endpoints.UseSoapEndpoint<ICatalogWebService>(
+    "/CatalogWebService.svc",
+    new SoapEncoderOptions(),
+    SoapSerializer.XmlSerializer
+  );
+
+  _ = endpoints.UseSoapEndpoint<IConverterWebService>(
+    "/ConverterWebService.svc",
     new SoapEncoderOptions(),
     SoapSerializer.XmlSerializer
   );
