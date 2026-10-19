@@ -1,4 +1,5 @@
-﻿using CONSOLE_CON_UNI_DOTNET_SOAP.Models.HTTP;
+﻿using CONSOLE_CON_UNI_DOTNET_SOAP.Controllers;
+using CONSOLE_CON_UNI_DOTNET_SOAP.Models.HTTP;
 using CONSOLE_CON_UNI_DOTNET_SOAP.Views.Utils;
 using LoginServiceRef;
 using System;
@@ -11,7 +12,7 @@ namespace CONSOLE_CON_UNI_DOTNET_SOAP.Views
   {
     public static bool UserHasLogin()
     {
-      var ctrl = new LoginHTTP();
+      var ctrl = new LoginController();
 
       // Username
       MessagesUtils.PrintMessage("Username: ");
@@ -21,9 +22,7 @@ namespace CONSOLE_CON_UNI_DOTNET_SOAP.Views
       MessagesUtils.PrintMessage("Password: ");
       string password = Console.ReadLine() ?? string.Empty;
 
-      LoginResponseDTO? res = ctrl.LoginAsync(username, password)
-        .GetAwaiter()
-        .GetResult();
+      LoginResponseDTO? res = ctrl.Login(username, password);
 
       if (res is null)
       {

@@ -15,7 +15,7 @@ if (!login)
 }
 
 // Menu
-//ConverterView.ShowMenu();
+ConverterView.ShowMenu();
 
 MessagesUtils.PrintMessage("Hasta Luego!");
 Thread.Sleep(TimeSpan.FromSeconds(3));
