@@ -1,0 +1,45 @@
+# ===== Visual Studio / .NET / MAUI =====
+.vs/
+bin/
+obj/
+*.user
+*.suo
+*.rsuser
+*.userprefs
+*.userosscache
+*.binlog
+[Dd]ebug/
+[Rr]elease/
+TestResults/
+[Ll]ogs/
+
+# NuGet
+*.nupkg
+*.snupkg
+packages/
+project.lock.json
+artifacts/
+
+# Android / iOS (paquetes generados y llaves de firma)
+*.apk
+*.aab
+*.keystore
+*.jks
+
+# Otros editores
+.idea/
+.vscode/
+*.iml
+
+# ===== Java / NetBeans / Gradle (si el repo tiene proyectos Java) =====
+target/
+build/
+.gradle/
+nbproject/private/
+local.properties
+*.class
+
+# ===== Sistema operativo =====
+Thumbs.db
+desktop.ini
+.DS_Store

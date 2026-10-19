@@ -1,0 +1,10 @@
+﻿
+using MOV_CON_UNI_DOTNET_SOAP.Models.data;
+
+namespace MOV_CON_UNI_DOTNET_SOAP.Models.Interface
+{
+    public interface ILoginRepository
+    {
+        Task<LoginResult> LoginAsync(string username, string password);
+    }
+}

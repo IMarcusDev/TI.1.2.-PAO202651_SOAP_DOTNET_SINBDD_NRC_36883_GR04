@@ -1,0 +1,16 @@
+{
+  "ExtendedData": {
+    "inputs": [
+      "http://localhost:5052/ConverterWebService.svc"
+    ],
+    "collectionTypes": [
+      "System.Array",
+      "System.Collections.Generic.Dictionary`2"
+    ],
+    "namespaceMappings": [
+      "*, MOV_CON_UNI_DOTNET_SOAP.Services.Soap.Conversion"
+    ],
+    "targetFramework": "net10.0-android",
+    "typeReuseMode": "None"
+  }
+}
