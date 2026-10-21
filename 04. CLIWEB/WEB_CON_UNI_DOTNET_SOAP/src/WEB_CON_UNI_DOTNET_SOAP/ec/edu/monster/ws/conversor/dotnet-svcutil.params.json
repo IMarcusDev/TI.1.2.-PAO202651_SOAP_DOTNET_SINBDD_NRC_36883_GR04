@@ -1,0 +1,23 @@
+{
+  "providerId": "Microsoft.Tools.ServiceModel.Svcutil",
+  "version": "8.0.0",
+  "options": {
+    "inputs": [
+      "http://localhost:5052/ConverterWebService.svc?wsdl"
+    ],
+    "namespaceMappings": [
+      "*, ec.edu.monster.ws.conversor"
+    ],
+    "outputFile": "Reference.cs",
+    "references": [
+      "Microsoft.Bcl.AsyncInterfaces, {Microsoft.Bcl.AsyncInterfaces, 5.0.0}",
+      "Microsoft.IdentityModel.Logging, {Microsoft.IdentityModel.Logging, 6.8.0}",
+      "Microsoft.IdentityModel.Protocols.WsTrust, {Microsoft.IdentityModel.Protocols.WsTrust, 6.8.0}",
+      "Microsoft.IdentityModel.Tokens, {Microsoft.IdentityModel.Tokens, 6.8.0}",
+      "Microsoft.IdentityModel.Tokens.Saml, {Microsoft.IdentityModel.Tokens.Saml, 6.8.0}",
+      "Microsoft.IdentityModel.Xml, {Microsoft.IdentityModel.Xml, 6.8.0}"
+    ],
+    "targetFramework": "net10.0",
+    "typeReuseMode": "All"
+  }
+}
