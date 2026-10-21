@@ -1,0 +1,8 @@
+<Solution>
+  <Folder Name="/src/">
+    <Project Path="src/WEB_CON_UNI_DOTNET_SOAP/WEB_CON_UNI_DOTNET_SOAP.csproj" />
+  </Folder>
+  <Folder Name="/test/">
+    <Project Path="test/WEB_CON_UNI_DOTNET_SOAP.Tests/WEB_CON_UNI_DOTNET_SOAP.Tests.csproj" />
+  </Folder>
+</Solution>
