@@ -43,3 +43,6 @@ local.properties
 Thumbs.db
 desktop.ini
 .DS_Store
+
+# Local ODD working notes (not versioned)
+odd/
