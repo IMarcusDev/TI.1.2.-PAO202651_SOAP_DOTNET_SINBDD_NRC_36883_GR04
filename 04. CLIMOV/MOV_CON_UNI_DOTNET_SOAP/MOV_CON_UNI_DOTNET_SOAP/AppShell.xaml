@@ -7,12 +7,22 @@
     Shell.FlyoutBehavior="Disabled"
     Shell.BackgroundColor="{StaticResource MonsterPrimary}"
     Shell.TitleColor="White"
-    Shell.ForegroundColor="White">
+    Shell.ForegroundColor="White"
+    Shell.TabBarBackgroundColor="White"
+    Shell.TabBarForegroundColor="{StaticResource MonsterPrimary}"
+    Shell.TabBarTitleColor="{StaticResource MonsterPrimary}"
+    Shell.TabBarUnselectedColor="{StaticResource BordeCampo}">
 
     <ShellContent Route="login" ContentTemplate="{DataTemplate views:LoginPage}" />
 
-    <!--<TabBar Route="main">
-        <ShellContent Title="Inicio"   Route="home"    ContentTemplate="{DataTemplate views:HomePage}" />
-        <ShellContent Title="Catálogo" Route="catalog" ContentTemplate="{DataTemplate views:CatalogPage}" />
-    </TabBar>-->
+    <TabBar Route="main">
+        <ShellContent Title="Conversión"
+                      Icon="tab_conversion.png"
+                      Route="conversion"
+                      ContentTemplate="{DataTemplate views:ConversionPage}" />
+        <ShellContent Title="Catálogo"
+                      Icon="tab_catalogo.png"
+                      Route="catalog"
+                      ContentTemplate="{DataTemplate views:CatalogPage}" />
+    </TabBar>
 </Shell>

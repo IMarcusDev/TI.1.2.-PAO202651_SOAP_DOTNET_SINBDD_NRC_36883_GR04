@@ -47,4 +47,7 @@
     <Color x:Key="TextoOscuro">#1F2937</Color>
     <Color x:Key="BordeCampo">#8A8F98</Color>
     <Color x:Key="BordeTarjeta">#E2E5EA</Color>
+    <Color x:Key="CampoSobrePrimario">#52658A</Color>
+    <Color x:Key="TextoSobrePrimario">#D5DCE8</Color>
+    <Color x:Key="TextoError">#C62828</Color>
 </ResourceDictionary>

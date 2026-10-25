@@ -12,16 +12,52 @@ public partial class LoginPage : ContentPage
         _controller = controller;
     }
 
-    private async void OnIngresarClicked(object sender, EventArgs e)
-    {
-        var resultado = await _controller.LoginAsync(UsernameEntry.Text, PasswordEntry.Text);
+    private void OnUsuarioCompleted(object? sender, EventArgs e) => PasswordEntry.Focus();
 
-        if (resultado.Success)
-            await Shell.Current.GoToAsync("//main/home");
-        else
+    private async void OnIngresarClicked(object? sender, EventArgs e)
+    {
+        if (!IngresarButton.IsEnabled)
+            return;
+
+        MostrarCargando(true);
+        ErrorLabel.IsVisible = false;
+
+        try
         {
-            ErrorLabel.Text = resultado.Message;
-            ErrorLabel.IsVisible = true;
+            var resultado = await _controller.LoginAsync(UsernameEntry.Text, PasswordEntry.Text);
+
+            if (resultado.Success)
+            {
+                PasswordEntry.Text = string.Empty;
+                await Shell.Current.GoToAsync("//main/conversion");
+            }
+            else
+            {
+                MostrarError(resultado.Message);
+            }
         }
+        catch (Exception)
+        {
+            MostrarError("Ocurrió un error inesperado. Intente de nuevo.");
+        }
+        finally
+        {
+            MostrarCargando(false);
+        }
+    }
+
+    private void MostrarCargando(bool cargando)
+    {
+        IngresarButton.IsEnabled = !cargando;
+        UsernameEntry.IsEnabled = !cargando;
+        PasswordEntry.IsEnabled = !cargando;
+        CargandoIndicator.IsRunning = cargando;
+        CargandoIndicator.IsVisible = cargando;
+    }
+
+    private void MostrarError(string mensaje)
+    {
+        ErrorLabel.Text = mensaje;
+        ErrorLabel.IsVisible = true;
     }
 }

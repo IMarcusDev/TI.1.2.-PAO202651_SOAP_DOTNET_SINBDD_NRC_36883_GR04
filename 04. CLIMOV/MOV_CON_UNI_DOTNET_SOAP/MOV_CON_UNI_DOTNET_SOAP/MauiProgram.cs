@@ -2,6 +2,7 @@
 using MOV_CON_UNI_DOTNET_SOAP.Controllers;
 using MOV_CON_UNI_DOTNET_SOAP.Models.Interface;
 using MOV_CON_UNI_DOTNET_SOAP.Models.Repositories;
+using MOV_CON_UNI_DOTNET_SOAP.Services;
 using MOV_CON_UNI_DOTNET_SOAP.Views;
 
 namespace MOV_CON_UNI_DOTNET_SOAP
@@ -19,20 +20,19 @@ namespace MOV_CON_UNI_DOTNET_SOAP
                     fonts.AddFont("OpenSans-Semibold.ttf", "OpenSansSemibold");
                 });
 
-            // Repositorios
+            builder.Services.AddSingleton<SessionService>();
+
             builder.Services.AddSingleton<ILoginRepository, LoginRepository>();
-            //builder.Services.AddSingleton<ICatalogRepository, CatalogRepository>();
-            //builder.Services.AddSingleton<IConversionRepository, ConversionRepository>();
+            builder.Services.AddSingleton<ICatalogRepository, CatalogRepository>();
+            builder.Services.AddSingleton<IConverterRepository, ConvertRepository>();
 
-            // Controladores
             builder.Services.AddTransient<LoginController>();
-            //builder.Services.AddTransient<CatalogController>();
-            //builder.Services.AddTransient<ConversionController>();
+            builder.Services.AddTransient<ConversionController>();
+            builder.Services.AddTransient<CatalogController>();
 
-            // Vistas
             builder.Services.AddTransient<LoginPage>();
-            //builder.Services.AddTransient<HomePage>();
-            //builder.Services.AddTransient<CatalogPage>();
+            builder.Services.AddTransient<ConversionPage>();
+            builder.Services.AddTransient<CatalogPage>();
 
 #if DEBUG
             builder.Logging.AddDebug();
@@ -40,6 +40,14 @@ namespace MOV_CON_UNI_DOTNET_SOAP
 
 
             Microsoft.Maui.Handlers.EntryHandler.Mapper.AppendToMapping("SinSubrayado", (handler, view) =>
+            {
+#if ANDROID
+                handler.PlatformView.BackgroundTintList =
+                    Android.Content.Res.ColorStateList.ValueOf(Android.Graphics.Color.Transparent);
+#endif
+            });
+
+            Microsoft.Maui.Handlers.PickerHandler.Mapper.AppendToMapping("SinSubrayado", (handler, view) =>
             {
 #if ANDROID
                 handler.PlatformView.BackgroundTintList =

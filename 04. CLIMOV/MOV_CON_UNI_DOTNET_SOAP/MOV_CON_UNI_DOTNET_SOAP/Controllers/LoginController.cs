@@ -1,21 +1,36 @@
 ﻿using MOV_CON_UNI_DOTNET_SOAP.Models.data;
 using MOV_CON_UNI_DOTNET_SOAP.Models.Interface;
-using System;
-using System.Collections.Generic;
-using System.Text;
+using MOV_CON_UNI_DOTNET_SOAP.Services;
 
 namespace MOV_CON_UNI_DOTNET_SOAP.Controllers
 {
-    public class LoginController(ILoginRepository loginRepository)
+    public class LoginController(ILoginRepository loginRepository, SessionService session) : ControladorConSesion(session)
     {
+        public const int MaxUsuario = 50;
+        public const int MaxPassword = 64;
+
         private readonly ILoginRepository _loginRepository = loginRepository;
-        public async Task<LoginResult> LoginAsync(string? username,  string? password)
+
+        public async Task<LoginResult> LoginAsync(string? username, string? password)
         {
-            if(string.IsNullOrWhiteSpace(username) || string.IsNullOrWhiteSpace(password))
-            {
-                return new LoginResult(false, "Ingrese usuario o contraseña", null);
-            }
-            return await _loginRepository.LoginAsync(username, password);
+            string usuario = username?.Trim() ?? "";
+            string clave = password?.Trim() ?? "";
+
+            if (usuario.Length == 0)
+                return new LoginResult(false, "Ingrese el usuario", null);
+            if (clave.Length == 0)
+                return new LoginResult(false, "Ingrese la contraseña", null);
+            if (usuario.Length > MaxUsuario)
+                return new LoginResult(false, $"El usuario no puede superar {MaxUsuario} caracteres", null);
+            if (clave.Length > MaxPassword)
+                return new LoginResult(false, $"La contraseña no puede superar {MaxPassword} caracteres", null);
+
+            LoginResult resultado = await _loginRepository.LoginAsync(usuario, clave);
+
+            if (resultado.Success && resultado.Token is not null)
+                Session.Iniciar(usuario, resultado.Token);
+
+            return resultado;
         }
     }
 }
