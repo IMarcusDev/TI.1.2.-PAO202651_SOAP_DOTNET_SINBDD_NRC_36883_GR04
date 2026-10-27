@@ -69,4 +69,10 @@
       <Generator>MSBuild:Compile</Generator>
     </MauiXaml>
   </ItemGroup>
+  <ItemGroup>
+    <Compile Remove="pruebas\**" />
+    <None Remove="pruebas\**" />
+    <EmbeddedResource Remove="pruebas\**" />
+    <MauiXaml Remove="pruebas\**" />
+  </ItemGroup>
 </Project>
